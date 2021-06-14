@@ -1,1 +1,18 @@
-<h2>Test index page</h2>
+<table class="records-index">
+  {{#each records}}
+  <tr>
+    <td>
+      {{this.category}}
+    </td>
+    <td>
+      {{this.name}}
+    </td>
+    <td>
+      {{this.date}}
+    </td>
+    <td>
+      {{this.amount}}
+    </td>
+  </tr>
+  {{/each}}
+</table>
