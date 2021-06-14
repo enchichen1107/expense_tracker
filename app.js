@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const Record = require('./models/record')
+const routes = require('./routes')
 const app = express()
 const port = 3000
 
@@ -29,56 +30,7 @@ app.set('view engine', 'hbs')
 // preprocess before entering routers
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
-
-// show front page
-app.get('/', (req, res) => {
-  Record.find()
-    .lean()
-    .then(records => res.render('index', { records }))
-    .catch(error => console.error(error))
-})
-
-// create record- show create page
-app.get('/records/create', (req, res) => {
-  return res.render('create')
-})
-
-// create record- post created data
-app.post('/records', (req, res) => {
-  return Record.create(req.body)
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
-})
-
-// edit record- show edit page
-app.get('/records/:id/edit', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
-    .lean()
-    .then((record) => res.render('edit', { record }))
-    .catch(error => console.log(error))
-})
-
-// edit record- update edit data
-app.put('/records/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
-    .then(record => {
-      record = Object.assign(record, req.body)
-      return record.save()
-    })
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
-})
-
-// delete record
-app.delete('/records/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
-    .then(record => record.remove())
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
-})
+app.use(routes)
 
 // set port
 app.listen(port, () => {
