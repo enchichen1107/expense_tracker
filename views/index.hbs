@@ -1,27 +1,33 @@
-<table class="records-index">
-  {{#each records}}
-  <tr>
-    <td>
-      {{this.category}}
-    </td>
-    <td>
-      {{this.name}}
-    </td>
-    <td>
-      {{this.date}}
-    </td>
-    <td>
-      {{this.amount}}
-    </td>
-    <td>
-      <a href="/records/{{ this._id }}/edit">修改</a>
-    </td>
-    <td>
-      <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-        <button type="submit">刪除</button>
-      </form>
-    </td>
-  </tr>
-  {{/each}}
-</table>
-<a href="/records/create">新增支出</a>
+<div class="mt-5">
+  <div>
+    <p>總金額</p>
+    <p id="total-amount"></p>
+  </div>
+  <table class="records-index">
+    {{#each records}}
+    <tr>
+      <td>
+        {{this.category}}
+      </td>
+      <td>
+        {{this.name}}
+      </td>
+      <td>
+        {{this.date}}
+      </td>
+      <td>
+        {{this.amount}}
+      </td>
+      <td>
+        <a href="/records/{{ this._id }}/edit">修改</a>
+      </td>
+      <td>
+        <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+          <button type="submit">刪除</button>
+        </form>
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+  <a href="/records/create">新增支出</a>
+</div>
