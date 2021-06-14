@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const Record = require('./models/record')
 const app = express()
 const port = 3000
@@ -27,6 +28,7 @@ app.set('view engine', 'hbs')
 
 // preprocess before entering routers
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 // show front page
 app.get('/', (req, res) => {
@@ -58,7 +60,7 @@ app.get('/records/:id/edit', (req, res) => {
 })
 
 // edit record- update edit data
-app.post('/records/:id/edit', (req, res) => {
+app.put('/records/:id', (req, res) => {
   const id = req.params.id
   return Record.findById(id)
     .then(record => {
@@ -70,7 +72,7 @@ app.post('/records/:id/edit', (req, res) => {
 })
 
 // delete record
-app.post('/records/:id/delete', (req, res) => {
+app.delete('/records/:id', (req, res) => {
   const id = req.params.id
   return Record.findById(id)
     .then(record => record.remove())
