@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const routes = require('./routes')
 require('./config/mongoose')
+require('handlebars-helpers')()
 const app = express()
 const port = 3000
 

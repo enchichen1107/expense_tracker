@@ -55,7 +55,7 @@ router.post('/filter', (req, res) => {
     .lean()
     .then(records => {
       records.forEach(function sumTotal (record) { totalAmount += record.amount })
-      res.render('index', { records, totalAmount })
+      res.render('index', { records, totalAmount, filterCategory })
     })
     .catch(error => console.log(error))
 })
