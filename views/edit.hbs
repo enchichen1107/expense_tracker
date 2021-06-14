@@ -9,8 +9,8 @@
     </div>
     <div class="form-group col-8">
       <label for="date" class="font-weight-bold">消費日期&#42;</label>
-      <input type="date" id="date" class="form-control" name="date" aria-describedby="date" aria-label="date"
-        placeholder="2020/xx/xx" value="{{record.date}}" required>
+      <input type="text" id="date" class="form-control" name="date" aria-describedby="date" aria-label="date"
+        placeholder="2020/xx/xx" value="{{dateFormat record.date " yyyy-MM-DD"}}" required>
     </div>
     <div class="form-group col-8">
       <label for="category" class="font-weight-bold">消費類別&#42;</label>
