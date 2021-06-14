@@ -1,6 +1,7 @@
 // init packages
 const express = require('express')
 const mongoose = require('mongoose')
+const exphbs = require('express-handlebars')
 const app = express()
 const port = 3000
 
@@ -18,9 +19,13 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+// setting template engine
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.set('view engine', 'hbs')
+
 // setting front page route
 app.get('/', (req, res) => {
-  res.send('hello world')
+  res.render('index')
 })
 
 // setting port
