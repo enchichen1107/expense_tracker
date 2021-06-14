@@ -1,16 +1,8 @@
-// init settings
-const mongoose = require('mongoose')
+// add record seeds
 const Record = require('../record')
 const recordList = require('../../record.json')
-
-// setting record seeds
-mongoose.connect('mongodb://localhost/record-list', { useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection
-db.on('error', () => {
-  console.log('mongodb error!')
-})
+const db = require('../../config/mongoose')
 db.once('open', () => {
-  console.log('mongodb connected!')
   recordList.records.forEach(record => {
     Record.create(record)
   })
