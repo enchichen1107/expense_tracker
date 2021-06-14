@@ -7,9 +7,13 @@ const Record = require('../../models/record')
 
 // show front page
 router.get('/', (req, res) => {
+  let totalAmount = 0
   Record.find()
     .lean()
-    .then(records => res.render('index', { records }))
+    .then(records => {
+      records.forEach(function sumTotal (record) { totalAmount += record.amount })
+      res.render('index', { records, totalAmount })
+    })
     .catch(error => console.error(error))
 })
 
