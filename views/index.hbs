@@ -1,5 +1,18 @@
 <div class="mt-5">
   <div>
+    <form class="col-4 form-group filter" id="filter-category" action="/records/filter" method="POST">
+      <select class="custom-select" id="filter" name="filter" aria-describedby="filter-category"
+        onchange="this.form.submit()" aria-label="filter-category">
+        <option value="0" selected disabled>篩選類別...</option>
+        <option value="家居物業">家居物業</option>
+        <option value="交通出行">交通出行</option>
+        <option value="休閒娛樂">休閒娛樂</option>
+        <option value="餐飲食品">餐飲食品</option>
+        <option value="其他">其他</option>
+      </select>
+    </form>
+  </div>
+  <div>
     <p>總金額</p>
     <p id="total-amount">{{totalAmount}}</p>
   </div>

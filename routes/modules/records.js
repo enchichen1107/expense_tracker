@@ -47,5 +47,18 @@ router.delete('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// filter by categories
+router.post('/filter', (req, res) => {
+  let totalAmount = 0
+  const filterCategory = req.body.filter
+  return Record.find({ category: { $regex: filterCategory, $options: 'i' } })
+    .lean()
+    .then(records => {
+      records.forEach(function sumTotal (record) { totalAmount += record.amount })
+      res.render('index', { records, totalAmount })
+    })
+    .catch(error => console.log(error))
+})
+
 // export router
 module.exports = router
