@@ -20,7 +20,12 @@
     {{#each records}}
     <tr>
       <td>
-        {{this.category}}
+        {{#if (eq this.category '家居物業' )}}<i class="fas fa-home"></i>{{/if}}
+        {{#if (eq this.category '交通出行' )}}<i class="fas fa-shuttle-van"></i>{{/if}}
+        {{#if (eq this.category '休閒娛樂' )}}<i class="fas fa-grin-beam"></i>{{/if}}
+        {{#if (eq this.category '餐飲食品' )}}<i class="fas fa-utensils"></i>{{/if}}
+        {{#if (eq this.category '其他' )}}<i class="fas fa-pen"></i>{{/if}}
+
       </td>
       <td>
         {{this.name}}
