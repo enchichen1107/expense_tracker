@@ -20,6 +20,7 @@ const hbs = exphbs.create({})
 hbs.handlebars.registerHelper('dateFormat', require('handlebars-dateformat'))
 
 // preprocess before entering routers
+app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(routes)

@@ -1,21 +1,21 @@
-<div class="mt-5">
-  <h2>請輸入支出</h2>
-  <small>*必填項目</small>
-  <form action="/records" method="POST">
-    <div class="form-group col-8">
-      <label for="name" class="font-weight-bold">消費名稱&#42;</label>
+<div class="mt-5 d-flex flex-column align-items-center">
+  <h2 class="mb-2">請輸入支出</h2>
+  <small class="mb-3">*必填項目</small>
+  <form class="create-form d-flex flex-column align-items-center" action="/records" method="POST">
+    <div class="form-group col-8 mb-3">
+      <label for="name" class="fw-bold">消費名稱&#42;</label>
       <input type="text" id="name" class="form-control" name="name" aria-describedby="name" aria-label="name"
         placeholder="錢都灑到哪裡啦" required>
     </div>
-    <div class="form-group col-8">
-      <label for="date" class="font-weight-bold">消費日期&#42;</label>
+    <div class="form-group col-8 mb-3">
+      <label for="date" class="fw-bold">消費日期&#42;</label>
       <input type="date" id="date" class="form-control" name="date" aria-describedby="date" aria-label="date"
         placeholder="2020/xx/xx" required>
     </div>
-    <div class="form-group col-8">
-      <label for="category" class="font-weight-bold">消費類別&#42;</label>
-      <select class="custom-select" id="category" name="category" aria-describedby="category" aria-label="category"
-        required>
+    <div class="form-group col-8 mb-3">
+      <label for="category" class="fw-bold">消費類別&#42;</label>
+      <select class="create-select custom-select" id="category" name="category" aria-describedby="category"
+        aria-label="category" required>
         <option value="" selected disabled class="text-secondary">挑個灑錢類別吧</option>
         <option value="家居物業">家居物業</option>
         <option value="交通出行">交通出行</option>
@@ -24,14 +24,14 @@
         <option value="其他">其他</option>
       </select>
     </div>
-    <div class="form-group col-8">
-      <label for="amount" class="font-weight-bold">消費金額&#42;</label>
+    <div class="form-group col-8 mb-3">
+      <label for="amount" class="fw-bold">消費金額&#42;</label>
       <input type="number" id="amount" min="0" class="form-control" name="amount" aria-describedby="amount"
         aria-label="amount" placeholder="88888" required>
     </div>
-    <div class="d-flex justify-content-center col-12 mt-3">
-      <a href="/" class="btn btn-primary" style="color: orange">返回</a>
-      <button type="submit" class="btn btn-info ml-3" style="color: orange;" id="submit-button">新增支出</button>
+    <div class="d-flex justify-content-center col-8 mt-3">
+      <a href="/" class="btn btn-return">返回</a>
+      <button type="submit" class="btn btn-add" id="submit-button">新增</button>
     </div>
   </form>
 </div>
