@@ -6,11 +6,8 @@ const methodOverride = require('method-override')
 const routes = require('./routes')
 require('./config/mongoose')
 require('handlebars-helpers')()
-// require('handlebars-dateformat')()
-// const hbs = require('hbs')
-// exphbs.registerHelper('dateFormat', require('handlebars-dateformat'))
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000
 
 // set template engine
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: require('handlebars-dateformat') }))
@@ -26,6 +23,6 @@ app.use(methodOverride('_method'))
 app.use(routes)
 
 // set port
-app.listen(port, () => {
-  console.log(`App is running on http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`App is running on http://localhost:${PORT}`)
 })
