@@ -1,10 +1,15 @@
 // add record seeds
 const Record = require('../record')
 const recordList = require('../../record.json')
+// const record = [...]
 const db = require('../../config/mongoose')
 db.once('open', () => {
-  recordList.records.forEach(record => {
-    Record.create(record)
+  Record.insertMany(recordList.records).then(
+    () => {
+      console.log('records added!')
+      return db.close()
+    }
+  ).then(() => {
+    console.log('database connection closed...')
   })
-  console.log('records added!')
 })
