@@ -1,8 +1,8 @@
 // add record seeds
 const Record = require('../record')
 const recordList = require('../../record.json')
-// const record = [...]
 const db = require('../../config/mongoose')
+
 db.once('open', () => {
   Record.insertMany(recordList.records).then(
     () => {
