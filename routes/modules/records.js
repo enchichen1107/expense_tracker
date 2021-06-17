@@ -2,8 +2,9 @@
 const express = require('express')
 const router = express.Router()
 
-// add Record model
+// add models
 const Record = require('../../models/record')
+const Category = require('../../models/category')
 
 // create record- show create page
 router.get('/create', (req, res) => {
@@ -49,15 +50,25 @@ router.delete('/:id', (req, res) => {
 
 // filter by categories
 router.post('/filter', (req, res) => {
-  let totalAmount = 0
   const filterCategory = req.body.filter
   return Record.find({ category: { $regex: filterCategory, $options: 'i' } })
     .lean()
     .then(records => {
-      records.forEach(function sumTotal (record) { totalAmount += record.amount })
-      res.render('index', { records, totalAmount, filterCategory })
+      let totalAmount = 0
+      Category.find()
+        .lean()
+        .then(categories => {
+          records.forEach(function sumTotal (record) {
+            categories.forEach(function mapIcons (category) {
+              if (category.name === record.category) { record.icon = category.icon }
+            })
+            totalAmount += record.amount
+          })
+          res.render('index', { records, totalAmount, filterCategory })
+        })
+        .catch(error => console.error(error))
     })
-    .catch(error => console.log(error))
+    .catch(error => console.error(error))
 })
 
 // export router

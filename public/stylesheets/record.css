@@ -1,5 +1,5 @@
-.filter-form,.custom-filter{
-  width: 20rem;
+.filter,.filter-form,.custom-filter{
+  /* width: 20rem; */
   height: 2rem;
   outline: none;
   border: none;
@@ -18,8 +18,8 @@
 .records-index{
   width: 75%;
 }
-tr:hover{
-  background-color: rgb(248, 218, 134);
+tbody tr:hover{
+  background-color: rgb(248, 229, 175);
 }
 table .fas{
   color: rgb(255, 153, 0);

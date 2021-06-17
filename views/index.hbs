@@ -1,8 +1,8 @@
 <div class="mt-5 d-flex flex-column align-items-center">
-  <div class="mb-3">
-    <form class="col-4 form-group filter" id="filter-category" action="/records/filter" method="POST">
-      <div class="filter-form custom-select">
-        <select class="custom-filter" id="filter" name="filter" aria-describedby="filter-category"
+  <div class="w-100 mb-3">
+    <form class="w-100 form-group filter" id="filter-category" action="/records/filter" method="POST">
+      <div class="w-100 filter-form custom-select d-flex justify-content-center">
+        <select class="w-75 custom-filter" id="filter" name="filter" aria-describedby="filter-category"
           onchange="this.form.submit()" aria-label="filter-category">
           <option value="0" selected disabled>篩選類別...</option>
           <option value="家居物業" {{#if (eq filterCategory '家居物業' )}}selected{{/if}}>家居物業</option>
@@ -15,40 +15,48 @@
     </form>
   </div>
   <div class="sum mt-5 d-flex justify-content-around">
-    <p>總金額</p>
+    <p>總消費</p>
     <p id="total-amount">{{totalAmount}}</p>
   </div>
   <table class="table table-striped records-index">
-    {{#each records}}
-    <tr style="vertical-align: middle;">
-      <td>
-        {{#if (eq this.category '家居物業' )}}<i class="fas fa-home"></i>{{/if}}
-        {{#if (eq this.category '交通出行' )}}<i class="fas fa-shuttle-van"></i>{{/if}}
-        {{#if (eq this.category '休閒娛樂' )}}<i class="fas fa-grin-beam"></i>{{/if}}
-        {{#if (eq this.category '餐飲食品' )}}<i class="fas fa-utensils"></i>{{/if}}
-        {{#if (eq this.category '其他' )}}<i class="fas fa-pen"></i>{{/if}}
-      </td>
-      <td>
-        {{this.name}}
-      </td>
-      <td>
-        {{dateFormat this.date "yyyy-MM-DD"}}
-      </td>
-      <td>
-        {{this.amount}}
-      </td>
-      <td>
-        <a class="btn btn-edit" href="/records/{{ this._id }}/edit"><i class="fas fa-pen"
-            style="color: rgb(65, 47, 36);"></i></a>
-      </td>
-      <td>
-        <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-          <button class="btn btn-delete" type="submit"><i class="fas fa-trash"
-              style="color: rgb(65, 47, 36);"></i></button>
-        </form>
-      </td>
-    </tr>
-    {{/each}}
+    <thead>
+      <tr style="vertical-align: middle;">
+        <th scope="col">#</th>
+        <th scope="col">消費名稱</th>
+        <th scope="col">日期</th>
+        <th scope="col">金額</th>
+        <th scope="col">編輯</th>
+        <th scope="col">刪除</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each records}}
+      <tr style="vertical-align: middle;">
+        <td>
+          <i class="{{this.icon}}"></i>
+        </td>
+        <td>
+          {{this.name}}
+        </td>
+        <td>
+          {{dateFormat this.date "yyyy-MM-DD"}}
+        </td>
+        <td>
+          {{this.amount}}
+        </td>
+        <td>
+          <a class="btn btn-edit" href="/records/{{ this._id }}/edit"><i class="fas fa-pen"
+              style="color: rgb(65, 47, 36);"></i></a>
+        </td>
+        <td>
+          <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+            <button class="btn btn-delete" type="submit"><i class="fas fa-trash"
+                style="color: rgb(65, 47, 36);"></i></button>
+          </form>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
   </table>
-  <a href="/records/create" class="btn btn-add mt-3 mb-5">新增支出</a>
+  <a href="/records/create" class="btn btn-add mt-3 mb-5">新增消費</a>
 </div>
