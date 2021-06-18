@@ -1,4 +1,4 @@
-# Restaurant List
+# Expense List
 Fast & Simple的老爸私房錢記帳本
 
 ## Features
