@@ -1,4 +1,4 @@
-# Expense List
+# Expense Tracker
 Fast & Simple的老爸私房錢記帳本
 
 ## Features
