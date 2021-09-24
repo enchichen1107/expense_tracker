@@ -1,7 +1,7 @@
 # Expense Tracker
 Fast & Simple的老爸私房錢記帳本
 Check it out!! 👉 https://evening-cove-87255.herokuapp.com/
-![image](https://github.com/enchichen1107/expense_tracker/compare/main...enchichen1107-patch-1?expand=1&short_path=55e5de3#diff-55e5de30652dfb5f95b31dc5ef2b396fa071015a89deddeae0d2e9c6a6a1e8c7)
+![image](老爸記帳本.png)
 
 ## Features
 1. 老爸可以在首頁一次瀏覽所有支出的清單
