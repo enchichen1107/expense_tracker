@@ -7,7 +7,7 @@ const routes = require('./routes')
 require('./config/mongoose')
 require('handlebars-helpers')()
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8000
 
 // set template engine
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: require('handlebars-dateformat') }))

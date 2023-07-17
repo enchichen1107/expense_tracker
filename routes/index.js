@@ -3,17 +3,14 @@ const express = require('express')
 const router = express.Router()
 
 // add router modules
-// add home module
 const home = require('./modules/home')
-
-// if request url matches '/', direct to home module
-router.use('/', home)
-
-// add records module
 const records = require('./modules/records')
+const users = require('./modules/users')
 
-// if request url matches '/records', direct to records module
+// use routes
 router.use('/records', records)
+router.use('/users', users)
+router.use('/', home)
 
 // export routers
 module.exports = router
