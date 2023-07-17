@@ -12,10 +12,11 @@ router.get('/create', (req, res) => {
 })
 
 // create record- post created data
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const userId = req.user._id
   const { name, date, category, amount } = req.body
-  return Record.create({ name, date, category, amount, userId })
+  const categoryData = await Category.findOne({ name: category }).lean().catch(error => console.log(error))
+  return Record.create({ name, date, category, amount, userId, categoryId: categoryData._id })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -31,14 +32,19 @@ router.get('/:id/edit', (req, res) => {
 })
 
 // edit record- update edit data
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
-  return Record.findOne({ _id, userId })
-    .then(record => {
-      record = Object.assign(record, req.body)
-      return record.save()
-    })
+  const { name, date, category, amount } = req.body
+  const categoryData = await Category.findOne({ name: category }).lean()
+    .catch(error => console.log(error))
+  return Record.findOneAndUpdate({ _id, userId }, { name, date, category, amount, userId, categoryId: categoryData._id }, {
+    new: true
+  })
+    // .then(record => {
+    //   record = Object.assign(record, { name, date, category, amount, userId, categoryId: categoryData._id })
+    //   return record.save()
+    // })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })

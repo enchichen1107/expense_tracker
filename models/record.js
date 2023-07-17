@@ -9,7 +9,7 @@ const recordSchema = new Schema({
   category: {
     type: String,
     enum: ['家居物業', '交通出行', '休閒娛樂', '餐飲食品', '其他'],
-    required: true
+    required: false
   },
   date: {
     type: Date,
@@ -23,6 +23,12 @@ const recordSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
+    index: true,
+    required: true
+  },
+  categoryId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
     index: true,
     required: true
   }
