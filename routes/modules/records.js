@@ -13,15 +13,18 @@ router.get('/create', (req, res) => {
 
 // create record- post created data
 router.post('/', (req, res) => {
-  return Record.create(req.body)
+  const userId = req.user._id
+  const { name, date, category, amount } = req.body
+  return Record.create({ name, date, category, amount, userId })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
 // edit record- show edit page
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Record.findOne({ _id, userId })
     .lean()
     .then((record) => res.render('edit', { record }))
     .catch(error => console.log(error))
@@ -29,8 +32,9 @@ router.get('/:id/edit', (req, res) => {
 
 // edit record- update edit data
 router.put('/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Record.findOne({ _id, userId })
     .then(record => {
       record = Object.assign(record, req.body)
       return record.save()
@@ -41,8 +45,9 @@ router.put('/:id', (req, res) => {
 
 // delete record
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Record.findOne({ _id, userId })
     .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
@@ -50,8 +55,9 @@ router.delete('/:id', (req, res) => {
 
 // filter by categories
 router.post('/filter', (req, res) => {
+  const userId = req.user._id
   const filterCategory = req.body.filter
-  return Record.find({ category: { $regex: filterCategory, $options: 'i' } })
+  return Record.find({ category: { $regex: filterCategory, $options: 'i' }, userId })
     .lean()
     .then(records => {
       let totalAmount = 0
