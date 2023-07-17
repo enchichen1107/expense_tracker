@@ -1,5 +1,6 @@
 // init packages
 const express = require('express')
+const session = require('express-session')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
@@ -15,6 +16,13 @@ app.set('view engine', 'hbs')
 
 const hbs = exphbs.create({})
 hbs.handlebars.registerHelper('dateFormat', require('handlebars-dateformat'))
+
+// set session
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
 
 // preprocess before entering routers
 app.use(express.static('public'))
