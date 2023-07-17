@@ -56,7 +56,7 @@ npm run seed
 npm run dev
 ```
 當 terminal 出現以下字樣，表示伺服器已啟動並成功連結
-App is running on http://localhost:3000
+App is running on http://localhost:8000
 mongodb connected!
 8. 登入可用下列預設帳密
 ```
