@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
         .then(categories => {
           records.forEach(function sumTotal (record) {
             categories.forEach(function mapIcons (category) {
-              if (JSON.stringify(category._id) === JSON.stringify(record.categoryId)) { record.icon = category.icon }
+              if (category.name === record.category) { record.icon = category.icon }
             })
             totalAmount += record.amount
           })
