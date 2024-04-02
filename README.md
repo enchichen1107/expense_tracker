@@ -1,6 +1,5 @@
 # Expense Tracker
 - Fast & Simple的私房錢記帳本
-- Check it out!! 👉 https://expense-tracker-ac-3275e2a8b542.herokuapp.com/
 - ps. Heroku app 已經匯入種子資料
 <img src="https://github.com/enchichen1107/expense_tracker/blob/main/%E8%80%81%E7%88%B8%E8%A8%98%E5%B8%B3%E6%9C%AC.png" width="350">
 
